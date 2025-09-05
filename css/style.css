@@ -1,0 +1,606 @@
+/* Reset and Base Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Playwrite+HU:wght@100..400&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    transition: all 0.3s ease;
+}
+
+
+/* Light Mode Variables */
+
+:root {
+    --primary-color: #1e3a8a;
+    --secondary-color: #3b82f6;
+    --text-color: #1f2937;
+    --bg-color: #ffffff;
+    --header-bg: #ffffff;
+    --menu-bg: #ffffff;
+    --hero-overlay: rgba(0, 0, 0, 0.6);
+    --border-color: #e5e7eb;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Dark Mode Variables */
+
+body.dark-mode {
+    --primary-color: #60a5fa;
+    --secondary-color: #3b82f6;
+    --text-color: #f9fafb;
+    --bg-color: #111827;
+    --header-bg: #1f2937;
+    --menu-bg: #ffffff;
+    --hero-overlay: rgba(0, 0, 0, 0.8);
+    --border-color: #374151;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+
+/* إخفاء الخط الأسود فوق الفوتر في وضع البلاك مود */
+
+body.dark-mode .custom-footer {
+    border-top: none !important;
+}
+
+body.dark-mode .custom-footer::before {
+    display: none !important;
+}
+
+body.dark-mode .custom-footer::after {
+    display: none !important;
+}
+
+
+/* Header Styles */
+
+.header {
+    background-color: var(--header-bg);
+    box-shadow: var(--shadow);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 1rem 0;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background-color: var(--border-color);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.theme-toggle {
+    background: #f3f4f6;
+    border: none;
+    border-radius: 2rem;
+    padding: 0.375rem;
+    color: #6b7280;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 80px;
+    height: 40px;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.05);
+}
+
+.theme-toggle i {
+    padding: 0.375rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Light Mode - Sun Active */
+
+body.light-mode .theme-toggle {
+    background: #f3f4f6;
+}
+
+body.light-mode .theme-toggle .fa-sun {
+    background: #fbbf24;
+    color: white;
+}
+
+body.light-mode .theme-toggle .fa-moon {
+    background: transparent;
+    color: #6b7280;
+}
+
+
+/* Dark Mode - Moon Active */
+
+body.dark-mode .theme-toggle {
+    background: #374151;
+}
+
+body.dark-mode .theme-toggle .fa-sun {
+    background: transparent;
+    color: #9ca3af;
+}
+
+body.dark-mode .theme-toggle .fa-moon {
+    background: #3b82f6;
+    color: white;
+}
+
+
+/* Mobile Menu */
+
+.mobile-menu {
+    background-color: var(--menu-bg);
+    padding: 0.75rem;
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 100px;
+    /* ✅ بدلاً من left: 0 */
+    z-index: 999;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    min-width: 200px;
+    max-width: 250px;
+    transform: translateX(0);
+}
+
+.mobile-menu.active {
+    display: block;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+}
+
+.menu-btn {
+    background-color: transparent;
+    border: none;
+    color: #1f2937;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: right;
+    width: 100%;
+    font-weight: 500;
+}
+
+.menu-btn i {
+    font-size: 0.875rem;
+    width: 16px;
+    text-align: center;
+    color: #6b7280;
+}
+
+.menu-btn:hover {
+    background-color: #f3f4f6;
+}
+
+.menu-btn.wallet {
+    color: #1f2937;
+}
+
+.menu-btn.wallet i {
+    color: #8b5cf6;
+}
+
+.menu-btn.my-courses {
+    color: #1f2937;
+}
+
+.menu-btn.my-courses i {
+    color: #3b82f6;
+}
+
+
+/* Welcome Section */
+
+.welcome-section {
+    padding: 4rem 2rem;
+    background-color: var(--bg-color);
+    text-align: center;
+}
+
+.welcome-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.welcome-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--text-color);
+    line-height: 1.2;
+    margin-bottom: 3rem;
+    font-family: 'Cardo', serif;
+    letter-spacing: -0.02em;
+}
+
+
+/* Education Levels */
+
+.education-levels {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12rem;
+    margin-top: 4rem;
+}
+
+.level-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: scale(1);
+    box-shadow: none;
+}
+
+.level-item:hover {
+    transform: scale(1.05);
+}
+
+.level-item:active {
+    transform: scale(0.95);
+}
+
+.level-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    transition: all 0.3s ease;
+    transform: scale(1);
+}
+
+.level-icon.primary {
+    background-color: #ef4444;
+}
+
+.level-icon.preparatory {
+    background-color: #8b5cf6;
+}
+
+.level-icon.secondary {
+    background-color: #3b82f6;
+}
+
+.level-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    text-align: center;
+}
+
+
+/* Hero Section */
+
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2022&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: radial-gradient(ellipse at 15% 100%, white 0%, transparent 60%), radial-gradient(ellipse at 35% 100%, white 0%, transparent 60%), radial-gradient(ellipse at 55% 100%, white 0%, transparent 60%), radial-gradient(ellipse at 75% 100%, white 0%, transparent 60%), radial-gradient(ellipse at 95% 100%, white 0%, transparent 60%);
+    background-size: 250px 120px, 200px 100px, 220px 110px, 180px 90px, 240px 115px;
+    background-repeat: no-repeat;
+    background-position: 0% 100%, 20% 100%, 40% 100%, 60% 100%, 80% 100%;
+    z-index: 1;
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.hero-btn {
+    background-color: white;
+    color: var(--primary-color);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Curricula Section */
+
+.curricula {
+    padding: 4rem 2rem;
+    background-color: var(--bg-color);
+}
+
+.curricula-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+}
+
+.curricula-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    .hero-description {
+        font-size: 1rem;
+    }
+    .welcome-title {
+        font-size: 2.5rem;
+    }
+    .education-levels {
+        gap: 3rem;
+        flex-wrap: wrap;
+    }
+    .level-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 1.5rem;
+    }
+    .level-label {
+        font-size: 1rem;
+    }
+    .header-container {
+        padding: 0 0.5rem;
+    }
+    .logo {
+        font-size: 1.2rem;
+    }
+    .theme-toggle {
+        min-width: 70px;
+        height: 36px;
+        gap: 0.375rem;
+    }
+    .theme-toggle i {
+        width: 24px;
+        height: 24px;
+        padding: 0.25rem;
+    }
+    .menu-btn {
+        font-size: 0.8rem;
+        padding: 0.625rem 0.875rem;
+    }
+    .menu-btn i {
+        font-size: 0.8rem;
+        width: 14px;
+    }
+    .mobile-menu {
+        left: 0;
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.5rem;
+    }
+    .hero-content {
+        padding: 1rem;
+    }
+    .welcome-title {
+        font-size: 2rem;
+    }
+    .education-levels {
+        gap: 2rem;
+        flex-direction: column;
+    }
+    .level-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.25rem;
+    }
+    .level-label {
+        font-size: 0.9rem;
+    }
+    .theme-toggle {
+        min-width: 65px;
+        height: 32px;
+        gap: 0.25rem;
+    }
+    .theme-toggle i {
+        width: 22px;
+        height: 22px;
+        padding: 0.25rem;
+    }
+    .menu-btn {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.75rem;
+    }
+    .menu-btn i {
+        font-size: 0.75rem;
+        width: 12px;
+    }
+    .mobile-menu {
+        left: 0;
+        min-width: 160px;
+    }
+}
+
+.typewriter-text {
+    font-family: 'Cairo', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    direction: rtl;
+    text-align: center;
+    color: white;
+}
+
+
+/* المؤشر اللامع في نهاية الجملة */
+
+.typewriter-text .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background-color: white;
+    animation: blink 0.8s infinite;
+    vertical-align: middle;
+}
+
+@keyframes blink {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #fff;
+    /* أو أي لون يناسب تصميمك */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* ظل بسيط للهيدر */
+}
+
+
+/**/
+
+
+/* */
+
+
+/**/
+
+
+/* */
+
+body.dark-mode .header {
+    background-color: #1f2937 !important;
+    /* خلفية داكنة للهيدر */
+}
+
+body.dark-mode .logo,
+body.dark-mode .menu-toggle {
+    color: #f9fafb !important;
+    /* لون فاتح وواضح */
+}
